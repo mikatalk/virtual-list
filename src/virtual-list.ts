@@ -57,9 +57,7 @@ function renderChannel({ height, color, name }) {
   </div>`;
 }
 
-function updateWheelDelta(host, delta) {
-  const { height: viewportHeight } = host.getBoundingClientRect();
-
+function updateWheelDelta(host: any, delta: number) {
   delta *= 0.2;
 
   host.top -= delta;
@@ -169,22 +167,22 @@ function updateWheelDelta(host, delta) {
   }
 }
 
-function throttleWheelEvent(host, event) {
+function throttleWheelEvent(host: any, event: any) {
   event.preventDefault && event.preventDefault();
   event.stopPropagation && event.stopPropagation();
   // TODO: Implement throttle for better perf
   updateWheelDelta(host, event?.deltaY || 0);
 }
 
-function throttle(callback: Function, limit: number = 100): Function {
-  let waiting = false;
-  return function () {
-    if (!waiting) {
-      callback.apply(this, arguments);
-      waiting = true;
-      setTimeout(function () {
-        waiting = false;
-      }, limit);
-    }
-  };
-}
+// function throttle(callback: Function, limit: number = 100): Function {
+//   let waiting = false;
+//   return function () {
+//     if (!waiting) {
+//       callback.apply(this, arguments);
+//       waiting = true;
+//       setTimeout(function () {
+//         waiting = false;
+//       }, limit);
+//     }
+//   };
+// }
